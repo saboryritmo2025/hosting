@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ritmo y Sabor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-[#fff7e0] font-poppins pb-20">
+
+  <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2"></div>
+
+  <header class="sticky top-0 z-20 bg-white shadow-sm px-4 py-3">
+    <div class="container mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREbdKrNGVUdDt0GyKJ2MPFJ9oDzo4YkJO_B8GroXhfPT7ajnLs1SsRxUfK&s=10" alt="logo" class="h-10 w-10 rounded-full object-cover">
+        <h1 class="text-lg font-bold tracking-wide hidden sm:block">RITMO Y SABOR</h1>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <div id="header-actions" class="flex items-center gap-2">
+          <div id="guest-actions" class="flex items-center gap-2">
+            <button id="btn-open-login" class="text-sm font-medium text-gray-600 px-3 py-2">Ingresar</button>
+            <button id="btn-open-register" class="text-sm bg-[#D91023] text-white px-4 py-2 rounded-full font-medium shadow-md">Registrarse</button>
+          </div>
+          <div id="user-actions" class="hidden flex items-center gap-3">
+            <div id="header-username" class="text-sm font-semibold text-gray-800">Usuario</div>
+            <button id="btn-logout" class="text-sm text-red-500 border border-red-200 px-3 py-1 rounded-lg hover:bg-red-50 transition"><i class="fas fa-sign-out-alt"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 pt-6">
+    
+    <section id="education-section">
+      <div class="hero-section rounded-xl p-6 text-white mb-6" style="background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://cdn.pixabay.com/photo/2019/08/19/09/09/peru-4415949_1280.jpg'); background-size:cover;">
+        <h2 class="text-2xl font-bold">Descubre la música criolla</h2>
+        <p class="mt-2 text-sm">Aprende la historia y ritmos de nuestra tierra.</p>
+      </div>
+      
+      <h3 class="text-xl font-semibold mb-4 text-gray-800">Módulos de Aprendizaje</h3>
+      <div id="modules-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"></div>
+
+      <h3 class="text-xl font-semibold mb-4 text-gray-800">Separatas y recursos</h3>
+      <div class="bg-white rounded-xl shadow-sm p-4 mb-6">
+        <div id="educational-materials-list" class="space-y-1"></div>
+      </div>
+    </section>
+
+    <section id="tourism-section" class="hidden">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Grandes Intérpretes</h2>
+  
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10" id="singers-grid">
+    </div>
+
+    <h3 class="text-xl font-bold text-gray-800 mb-4">Cartelera de Eventos en Vivo</h3>
+    <div class="space-y-4 mb-8" id="events-list">
+    </div>
+    </section>
+
+    <section id="profile-section" class="hidden">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Mi Perfil</h2>
+      <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+        <div class="flex items-center gap-4">
+          <div class="w-16 h-16 rounded-full bg-gray-200 overflow-hidden">
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <p id="profile-name-display" class="font-bold text-lg">Invitado</p>
+            <p class="text-gray-500 text-sm">Fanático del Criollismo</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-2 mt-6 border-t pt-4 text-center">
+            <div><div id="stat-events" class="text-xl font-bold text-red-600">0</div><div class="text-[10px] text-gray-400">Entradas</div></div>
+            <div><div id="stat-modules" class="text-xl font-bold text-green-600">0</div><div class="text-[10px] text-gray-400">Módulos</div></div>
+            <div><div id="stat-points" class="text-xl font-bold text-blue-600">0</div><div class="text-[10px] text-gray-400">Puntos</div></div>
+        </div>
+      </div>
+
+      <h4 class="font-bold mb-3">Historial de Entradas</h4>
+      <div class="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
+          <div id="purchase-history-list" class="divide-y divide-gray-100"></div>
+      </div>
+    </section>
+
+    <section id="community-section" class="hidden">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Comunidad Ritmo y Sabor</h2>
+      
+      <div class="bg-white rounded-xl shadow-sm p-4 mb-8 flex gap-4 border border-gray-100">
+        <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0">
+          <i class="fas fa-user text-red-500"></i>
+        </div>
+        <input type="text" id="community-input" placeholder="Comparte algo con la comunidad criolla..." class="bg-gray-50 rounded-full px-5 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#D91023]/20 transition border border-gray-100 text-sm">
+        <button onclick="showToast('Función de posteo disponible en la versión completa', 'info')" class="bg-[#D91023] text-white px-4 py-2 rounded-full text-sm font-bold">Publicar</button>
+      </div>
+
+      <div id="community-feed" class="space-y-6">
+        </div>
+    </section>
+
+  </main>
+
+  <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 shadow-[0_-4px_10px_rgba(0,0,0,0.03)] z-40">
+    <div class="flex justify-around items-center py-3">
+      <button class="nav-item text-[#D91023] flex flex-col items-center gap-1" data-target="education-section">
+        <i class="fas fa-book-open text-xl"></i><span class="text-[10px] font-medium">Educación</span>
+      </button>
+      <button class="nav-item text-gray-400 flex flex-col items-center gap-1" data-target="tourism-section">
+        <i class="fas fa-music text-xl"></i><span class="text-[10px] font-medium">Conciertos</span>
+      </button>
+      <button class="nav-item text-gray-400 flex flex-col items-center gap-1" data-target="profile-section">
+        <i class="fas fa-user text-xl"></i><span class="text-[10px] font-medium">Perfil</span>
+      </button>
+      <button class="nav-item text-gray-400 flex flex-col items-center gap-1" data-target="community-section">
+        <i class="fas fa-users text-xl"></i><span class="text-[10px] font-medium">Comunidad</span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="auth-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-xl shadow-lg p-6 w-full max-w-md mx-4 relative">
+      <button id="close-auth" class="absolute top-4 right-4 text-gray-400"><i class="fas fa-times"></i></button>
+      <h4 id="auth-title" class="text-xl font-bold mb-6 text-center">Ingresar</h4>
+      <form id="auth-form" class="space-y-4">
+        <div id="field-name" class="hidden"><input id="input-name" type="text" placeholder="Nombre completo" class="w-full border p-3 rounded-lg"></div>
+        <input id="input-email" type="email" placeholder="Correo" required class="w-full border p-3 rounded-lg">
+        <input id="input-password" type="password" placeholder="Contraseña" required class="w-full border p-3 rounded-lg">
+        <button type="submit" id="auth-submit-btn" class="w-full bg-[#D91023] text-white py-3 rounded-lg font-bold">Entrar</button>
+      </form>
+      <p class="mt-4 text-center text-sm">
+          <span id="auth-toggle-text">¿No tienes cuenta?</span> 
+          <button id="auth-toggle-btn" class="text-[#D91023] font-bold">Regístrate</button>
+      </p>
+    </div>
+  </div>
+  <div id="lessons-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 px-4">
+    <div class="bg-white rounded-xl shadow-lg p-6 w-full max-w-2xl max-h-[80vh] overflow-y-auto relative">
+      <button id="close-lessons" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+        <i class="fas fa-times text-xl"></i>
+      </button>
+      
+      <h4 id="lessons-title" class="text-xl font-bold mb-4 pr-8 text-gray-800">Cargando temas...</h4>
+      
+      <div id="lessons-content" class="space-y-2">
+        </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
